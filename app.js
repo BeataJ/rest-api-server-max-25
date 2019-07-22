@@ -1,10 +1,13 @@
 const express = require('express');
-const bodyParsser = require('body-parser')
-const app = express();
-
-// app.use(bodyParsser.urlencoded({}));
+const bodyParser = require('body-parser')
 
 const feedRouter = require('./routes/feed')
+
+const app = express();
+
+// app.use(bodyParser.urlencoded()); x-www-form-urlencoded <form.
+app.use(bodyParser.json()); // application/json
+
 
 app.use('/feed', feedRouter);
 
