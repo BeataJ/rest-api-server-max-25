@@ -13,10 +13,10 @@ router.post(
   [
     body("title")
       .trim()
-      .isLength({ max: 5 }),
+      .isLength({ min: 5 }),
     body("content")
       .trim()
-      .isLength({ max: 5 })
+      .isLength({ min: 5 })
   ],
   feedController.createPost
 );
