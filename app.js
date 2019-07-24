@@ -23,7 +23,7 @@ app.use("/feed", feedRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://beata:1234@cluster0-b4yc7.mongodb.net/network?retryWrites=true&w=majority"
+    "mongodb+srv://beata:1234@cluster0-b4yc7.mongodb.net/messages?retryWrites=true&w=majority"
   )
   .then(result => {
     app.listen(8080);
