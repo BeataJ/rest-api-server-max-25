@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { validationResult } = require("express-validator");
 const Post = require("../models/post");
 
@@ -97,5 +99,37 @@ exports.updatePost = (req, res, next) => {
     error.statusCode = 422;
     throw error;
   }
-  
+  Post.findById(postId)
+    .then(post => {
+      if(!post) {
+        const error = new Error('Could not find post.');
+        error.statusCode = 404;
+        throw error;
+      }
+      if (imageUrl !== post.imageUrl) {
+        clearImage(post.imageUrl);
+      }
+      post.title = title;
+      post.content = content;
+      post.imageUrl = imageUrl
+      return post.save();
+    })
+    .then(result => {
+      res.status(200).json({
+        message: 'Post updated!',
+        post: result
+      })
+    })
+    .catch(err => {
+      if(!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    })
 }
+
+
+const clearImage = filePath => {
+  filePath = path.join(__dirname, '..', filePath);
+  fs.unlink(filePath, err => console.log(err));
+};
