@@ -33,4 +33,6 @@ router.put('/post/:postId', [
 ],
 feedController.updatePost);
 
+router.delete('/post/:postId');
+
 module.exports = router;
