@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
         .then(hashedPW => {
             const user = new User({
                 email: email,
-                password: password,
+                password: hashedPW,
                 name: name
             });
             return user.save();
