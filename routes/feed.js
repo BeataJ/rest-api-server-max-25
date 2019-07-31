@@ -10,8 +10,8 @@ router.get("/posts", isAuth, feedController.getPosts);
 
 // POST /feed/post
 router.post(
-  isAuth,
   "/post",
+  isAuth,
   [
     body("title")
       .trim()
