@@ -11,12 +11,12 @@ const postSchema = new Schema({
         required: true
     },
     content: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        type: Object,
+        required: String
     },
     creator: {
-        type: Object,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     }
 }, {timestamps: true});
