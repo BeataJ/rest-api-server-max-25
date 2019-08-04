@@ -61,7 +61,7 @@ exports.createPost = (req, res, next) => {
     .then( user => {
       creator = user;
       user.posts.push(post);
-      user.save();
+      return user.save();
     })
     .then(result => {
       res.status(201).json({
@@ -126,7 +126,7 @@ exports.updatePost = (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
-      if(post.creator.toString() !== req.userId) {
+      if (post.creator.toString() !== req.userId) {
         const error = new Error('Not authorized!');
         error.statusCode = 403;
         throw error;
