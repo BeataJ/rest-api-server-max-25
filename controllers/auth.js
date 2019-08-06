@@ -105,7 +105,7 @@ exports.updateUserStatus = (req, res, next) => {
       return user.save();
     })
     .then(result => [
-      res.ststus(200).json({ message: 'User updated.'})
+      res.status(200).json({ message: 'User updated.'})
     ])
     .catch(err => {
       if (!err.statusCode) {
